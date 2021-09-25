@@ -1,3 +1,5 @@
+const useContext  = React.useContext;
+
 function Balance(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');  
@@ -30,7 +32,14 @@ function BalanceMsg(props){
 }
 
 function BalanceForm(props){
-  const [email, setEmail]   = React.useState('');
+  const userContext = useContext(UserContext);
+  let defaultEmail = '';
+
+  if (userContext.user != null){
+    defaultEmail = userContext.user.email;
+  }
+
+  const [email, setEmail]   = React.useState(defaultEmail);
   const [balance, setBalance] = React.useState('');  
 
   function handle(){

@@ -1,3 +1,5 @@
+const useContext  = React.useContext;
+
 function Deposit(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');  
@@ -29,7 +31,14 @@ function DepositMsg(props){
 } 
 
 function DepositForm(props){
-  const [email, setEmail]   = React.useState('');
+  const userContext = useContext(UserContext);
+  let defaultEmail = '';
+
+  if (userContext.user != null){
+    defaultEmail = userContext.user.email;
+  }
+
+  const [email, setEmail]   = React.useState(defaultEmail);
   const [amount, setAmount] = React.useState('');
 
   function handle(){
