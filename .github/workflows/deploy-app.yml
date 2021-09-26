@@ -15,4 +15,4 @@ jobs:
           email: 'charaka@basilurtea.com'
           api_key: ${{secrets.HEROKU_API_KEY}}
           docker_compose_file: './docker-compose.yml'
-          heroku_apps: '[{"imagename":"api-server:latest","appname":"mit-bad-bank-pp","apptype":"web"},{"imagename":"mongo","appname":"mit-bad-bank-pp","apptype":"web"}]'
+          heroku_apps: '[{"imagename":"api-server:latest","appname":"mit-bad-bank-pp","apptype":"web"},{"imagename":"mongo","appname":"mit-bad-bank-pp","apptype":"worker"}]'

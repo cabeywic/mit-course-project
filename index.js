@@ -1,13 +1,16 @@
-var express = require('express');
-var app     = express();
-var cors    = require('cors');
-var dal     = require('./dal.js');
-const e = require('express');
+const express = require('express');
+const cors    = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+const dal     = require('./dal.js');
+const app     = express();
 
 // used to serve static files from public directory
 app.use(express.static('public'));
 app.use(cors());
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // create user account
 app.get('/account/create/:name/:email/:password', function (req, res) {
 
