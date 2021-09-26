@@ -9,9 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-        uses: gonuit/heroku-docker-deploy@v1.3.3
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "mit-bad-bank-pp" #Must be unique in Heroku
           email: "charaka@basilurtea.com"
-          dockerfile_name: dockerfile
