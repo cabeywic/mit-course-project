@@ -27,6 +27,9 @@ function NavBar(){
             <a className="nav-link" href="#/balance/">Balance</a>
           </li>
           <li className="nav-item">
+            <a className="nav-link" href="#/transfer/">Transfer</a>
+          </li>  
+          <li className="nav-item">
             <a className="nav-link" href="#/alldata/">AllData</a>
           </li>     
         </ul>

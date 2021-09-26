@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const url         = 'mongodb://mongo:27017';
+const url         = process.env.MONGODB_URI || 'mongodb://mongo:27017'
 let db            = null;
  
 // connect to mongo
@@ -63,6 +63,32 @@ function update(email, amount){
     });    
 }
 
+// transfer money
+function transfer(email1, email2, amount){
+    return new Promise(async (resolve, reject) => {    
+        const users = db.collection('users');
+            await users           
+             .findOneAndUpdate(
+                {email: email1},
+                { $inc: { balance: -amount}},
+                { returnOriginal: false },
+                function (err, documents) {
+                    if(err) reject(err);
+                }
+             );
+
+            await users
+             .findOneAndUpdate(
+                {email: email2},
+                { $inc: { balance: amount}},
+                { returnOriginal: false },
+                function (err, documents) {
+                    err ? reject(err) : resolve(documents);
+                }
+             );
+    });    
+}
+
 // all users
 function all(){
     return new Promise((resolve, reject) => {    
@@ -76,4 +102,4 @@ function all(){
 }
 
 
-module.exports = {create, findOne, find, update, all};
+module.exports = {create, findOne, find, update, all, transfer};

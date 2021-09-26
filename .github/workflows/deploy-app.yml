@@ -2,17 +2,15 @@ name: Deploy to heroku.
 on:
   push:
     branches: [master]
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-        id: heroku
-        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
+        uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          email: 'charaka@basilurtea.com'
-          api_key: ${{secrets.HEROKU_API_KEY}}
-          docker_compose_file: './docker-compose.yml'
-          heroku_apps: '[{"imagename":"api-server:latest","appname":"mit-bad-bank-pp","apptype":"web"},{"imagename":"mongo","appname":"mit-bad-bank-pp","apptype":"worker"}]'
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "mit-bad-bank-pp" #Must be unique in Heroku
+          heroku_email: "charaka@basilurtea.com"

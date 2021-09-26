@@ -70,6 +70,9 @@ function LoginForm(props){
       onChange={e => setPassword(e.currentTarget.value)}/><br/>
 
     <button type="submit" className="btn btn-light" onClick={handle}>Login</button>
+    <div>
+      <button className="btn btn-light" onClick={e =>  window.location.href='/git-auth'}>Login with GitHub</button>
+    </div>
    
   </>);
 }
